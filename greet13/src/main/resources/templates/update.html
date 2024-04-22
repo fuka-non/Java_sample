@@ -1,0 +1,62 @@
+<!DOCTYPE html>
+<html  xmls:th="http://www.thymeleaf.org"
+	  xlmns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>編集</title>
+</head>
+<body>
+	<h2>編集</h2>
+	<div th:if="${error!=null}">
+		<h3 style="color:red" th:text="${'登録エラー : '+error}"></h3>
+	</div>
+
+	<form action="/update" th:action="@{/update}" th:object="${loginUser}" method="post">
+		<table>
+				
+			<tr>
+				<td>ユーザーID：
+				<span th:text="*{userId}"></span>
+				</s>
+			</tr>
+				
+			<tr>
+				<td>ユーザー名：
+				<input type="text" th:field="*{username}">
+				</td>
+			</tr>
+			
+			<tr>
+				<td th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color:red"></td>
+			</tr>
+				
+			<tr>
+				<td>パスワード：
+				<input type="text" name="password" required>
+				</td>
+			</tr>
+			<tr>
+				<td th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:red"></td>
+			</tr>
+			
+			<tr>
+			<td>役割：
+				<input type="radio" name="role" value="GENERAL" th:checked="*{role == 'GENERAL'}">一般
+				&nbsp;
+				<input type="radio" name="role" value="ADMIN" th:checked="*{role == 'ADMIN'}">管理者
+			</td>
+			</tr>
+			
+		</table>
+		<input type="hidden" th:field="*{userId}">
+		<input type="hidden" th:field="*{id}">
+		<input type="submit" value="編集">
+	</form>
+	
+	<br>
+	<div>
+		<a href="/userList" th:href="@{/userList}">ユーザー管理へ</a>
+	</div>
+
+</body>
+</html>

@@ -1,0 +1,46 @@
+<greetアプリ用>====================================
+create table greetdb.greet_message(
+id int auto_increment primary key,
+language varchar(20) not null unique,
+morning varchar(64),
+noon varchar(64),
+evening varchar(64),
+night varchar(64),
+remarks varchar(256));
+
+insert into greet_message(language,morning,noon,evening,night)
+values("日本語","おはようございます","こんにちは","こんばんは","おやすみなさい");
+
+
+<ログイン用>====================================
+create table greetdb.users (
+id int auto_increment primary key,
+user_id varchar(32) not null unique,
+password varchar(128),
+username varchar(32),
+role varchar(16)
+);
+
+
+insert into users(user_id,password,username,role)
+values('shk23001',
+'$2a$10$6fPXYK.C9rCWUBifuqBIB.GRNU.nQtBpdzkkKis8ETaKVKxNo/ltO',
+'厚木太郎','GENERAL');
+insert into users(user_id,password,username,role)
+values('shk21020',
+'$2a$10$SJTWvNl16fCU7DaXtWC0DeN/A8IOakpCkWWNZ/FKRV2CHvWElQwMS',
+'海老名花子','ADMIN');
+
+
+<掲示板用>=====================================
+create table board (
+id int auto_increment primary key,
+date timestamp default current_timestamp,
+user_id varchar(32) not null,
+username varchar(32) not null,
+message varchar(256) not null
+);
+
+insert into board(user_id,username,message)
+values('shk23001','厚木太郎','お試し価格');
+

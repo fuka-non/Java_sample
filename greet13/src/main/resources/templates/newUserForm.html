@@ -1,0 +1,58 @@
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeleaf.org"
+	  xlmns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>新規ユーザー登録</title>
+</head>
+<body>
+	<h2>新規登録</h2>
+	<div th:if="${error!=null}">
+		<h3 style="color:red" th:text="${'登録エラー : '+error}"></h3>
+	</div>
+	<form action="/register" th:action="@{/register}" th:object="${userForm}" method="post">
+		<table>
+			<tr>
+			<td>ユーザーID：
+				<input type="text" th:field="*{userId}">
+			</td>
+			</tr>
+			<tr>
+				<td th:if="${#fields.hasErrors('userId')}" th:errors="*{userId}" style="color:red"></td>
+			</tr>
+			
+			<tr>
+			<td>ユーザー名：
+				<input type="text" th:field="*{username}">
+			</td>
+			</tr>
+			<tr>
+				<td th:if="${#fields.hasErrors('username')}" th:errors="*{username}" style="color:red"></td>
+			</tr>
+			
+			<tr>
+			<td>役割：
+				<input type="radio" name="role" value="GENERAL" checked>一般
+				&nbsp;
+				<input type="radio" name="role" value="ADMIN">管理者
+			</td>
+			</tr>
+			
+			<tr>
+			<td>パスワード：
+				<input type="text" th:field="*{password}">
+			</td>
+			</tr>
+			<tr>
+				<td th:if="${#fields.hasErrors('password')}" th:errors="*{password}" style="color:red"></td>
+			</tr>
+		</table>
+		<br>
+		<input type="submit" values="登録">
+	</form>
+	
+	<div>
+		<a href="/userList" th:href="@{/userList}">ユーザー管理へ</a>
+	</div>
+</body>
+</html>

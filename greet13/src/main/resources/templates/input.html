@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html xmls:th="http://www.thymeleaf.org"
+	  xlmns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>挨拶登録</title>
+</head>
+<body>
+	<h2>挨拶の登録</h2>
+	<form action="/input" th:action="@{/input}" th:object="${greetForm}" method="post">
+		<table>
+			<tr>
+				<td>言語</td>
+				<td>
+					<input type="text" name="language" th:field="*{language}">
+				</td>
+				<td th:if="${#fields.hasErrors('language')}" th:errors="*{language}" style="color:red"></td>
+			</tr>
+						
+			<tr>
+				<td>朝</td>
+				<td>
+					<input type="text" name="morning" th:field="*{morning}">
+				</td>
+				<td th:if="${#fields.hasErrors('morning')}" th:errors="*{morning}" style="color:red"></td>
+			</tr>
+						
+			<tr>
+				<td>昼</td>
+				<td>
+					<input type="text" name="noon" th:field="*{noon}">
+				</td>
+				<td th:if="${#fields.hasErrors('noon')}" th:errors="*{noon}" style="color:red"></td>
+			</tr>
+						
+			<tr>
+				<td>夕方</td>
+				<td>
+					<input type="text" name="evening" th:field="*{evening}">
+				</td>
+				<td th:if="${#fields.hasErrors('evening')}" th:errors="*{evening}" style="color:red"></td>
+			</tr>
+						
+			<tr>
+				<td>夜</td>
+				<td>
+					<input type="text" name="night" th:field="*{night}">
+				</td>
+				<td th:if="${#fields.hasErrors('night')}" th:errors="*{night}" style="color:red"></td>
+			</tr>
+						
+<!--			<tr>-->
+<!--				<td>別れの挨拶</td>-->
+<!--				<td>-->
+<!--					<input type="text" name="bye" th:field="*{bye}">-->
+<!--				</td>-->
+<!--				<td th:if="${#fields.hasErrors('bye')}" th:errors="*{bye}" style="color:red"></td>-->
+<!--			</tr>-->
+						
+			<tr>
+				<td>備考</td>
+				<td>
+					<textarea name="remarks" rows="4" cols="80" th:field="*{remarks}"></textarea>
+				</td>
+				<td th:if="${#fields.hasErrors('remarks')}" th:errors="*{remarks}" style="color:red"></td>
+			</tr>
+		</table>	
+		<br>
+		<input type="submit" values="登録">
+	</form>
+	<div>
+		<a href="/" th:href="@{/}">トップページへもどる</a>
+	</div>
+</body>
+</html>

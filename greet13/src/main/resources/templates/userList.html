@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+<meta charset="UTF-8">
+<title>ユーザー管理</title>
+
+<style type="text/css">
+	table.counter{ counter-reset: rowCount; }
+	table.counter>tbody>tr{ counter-increment: rowCount; }
+	table.counter>tbody>tr>td:first-child::before{ content:counter(rowCount); }
+</style>
+
+</head>
+<body>
+	<h1>ユーザー管理</h1>
+	<p>
+		<h3>
+			<a href="/save" th:href="@{/save}">新規登録</a>
+		</h3>
+	</p>
+	
+	<div>
+		<table class="counter">
+			<thead>
+			<tr>
+				<td>No.</td>
+				<td>ユーザーID</td>
+				<td>ユーザー名</td>
+				<td>役割</td>
+				<td colspan="2" align="center">管理</td>
+			</tr>
+			</thead>
+			
+			<tbody>
+			<tr th:each="user:${userList}">
+				<td></td>
+				<td th:text="${user.userId}">userID</td>
+				<td th:text="${user.username}">名前</td>
+				<td th:text="${user.role} == 'ADMIN'?'管理者':'一般'">役割</td>
+				<td>
+					<a href="/updateForm" th:href="@{/updateForm(id=${user.id})}">編集</a>
+				</td>
+				<td>
+					<a href="/deleteForm" th:href="@{/deleteForm(id=${user.id})}">削除</a>
+				</td>
+			</tr>
+			</tbody>
+		</table>
+	</div>
+	
+	<div>
+		<p>
+			<a href="/" th:href="@{/}">トップページへもどる</a>
+		</p>
+	</div>
+</body>
+</html>

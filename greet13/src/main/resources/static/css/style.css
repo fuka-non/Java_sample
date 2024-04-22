@@ -1,0 +1,12 @@
+@charset "UTF-8";
+h1{
+	background-color: darkseagreen;
+}
+
+.error{
+	color: red;
+}
+
+/*table.counter{ counter-reset: rowCount; }*/
+/*table.counter > tbody > tr{ counter-increment: rowCount; }*/
+/*table.counter > tbody > tr > td:first-child::before{ content:counter(rowCount); }*/

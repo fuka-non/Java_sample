@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html  xmlns:th="http://www.thymeleaf.org"
+	   xlmns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<title>けいじばん</title>
+<style type="text/css">
+	table.counter{ counter-reset: rowCount; }
+	table.counter>tbody>tr{ counter-increment: rowCount; }
+	table.counter>tbody>tr>td:first-child::before{ content:counter(rowCount); }
+	table.counter{ text-align: center; }
+	table.counter>tbody td:nth-of-type(4){ text-align: left; }
+</style>
+</head>
+<body bgcolor="#DDFFFF">
+	<h2>けいじばん</h2>
+	
+		<table class="counter" border="1" bgcolor="#FFFFFF">
+			
+			<thead>
+				<td>No.</td>
+				<td>日時</td>
+				<td>ユーザー名</td>
+				<td>内容</td>
+				<td>編集</td>
+			</thead>
+			<tbody>
+				<tr th:each="board:${boardList}">
+					<td></td>
+					<td th:text="${#dates.format(board.date, 'yyyy/MM/dd HH:mm')}"></td>
+<!--					<td th:text="${board.date}">日付</td>-->
+					<td th:text="${board.username}">名前</td>
+					<td th:text="${board.message}">内容</td>
+					<td>削除</td>
+				</tr>
+			</tbody>
+		</table>
+	
+	<br>
+	
+	<div>
+		ID：
+		<span sec:authentication="principal.userId"></span>　
+		おなまえ：
+		<span sec:authentication="principal.username"></span><br>
+		かきこむ：
+		<br>
+		<form>
+			<input type="text" name="message" maxlength="50" size="50" required>
+			<input type="hidden" th:value="S{}">
+			<input type="hidden" th:value="${}">
+			<input type="submit" value="投稿">
+		</form>
+	</div>
+	<br>
+	<div>
+		<a href="/" th:href="@{/}">トップページへ</a>
+	</div>
+	
+</body>
+</html>

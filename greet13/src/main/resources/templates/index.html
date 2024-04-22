@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	  xlmns:sec="http://www.thymeleaf.org/extras/spring-security">
+<head>
+<meta charset="UTF-8">
+<link rel="stylesheet" href="../static/css/style.css" th:href="@{/css/style.css}">
+<title>トップページ</title>
+</head>
+<body>
+	<h1>トップページ</h1>
+	<p sec:authorize="authenticated">ようこそ
+		<span sec:authentication="principal.username">ユーザー</span>
+		さん
+	</p>
+	<ul>
+		<li sec:authorize="not authenticated"><a th:href="@{/login}">ログインページへ</a></li>
+<!--		<li sec:authorize-url="/general"><a href="general.html" th:href="@{/general}">一般ユーザーページへ</a></li>-->
+<!--		<li sec:authorize-url="/admin"><a href="admin.html" th:href="@{/admin}">管理者ページへ</a></li>-->
+	
+			<li sec:authorize-url="/board"><a href="board.html" th:href="@{/board}">けいじばんへ</a></li>
+
+			<li sec:authorize-url="/greet"><a href="greet.html" th:href="@{/greet}">挨拶の表示へ</a></li>
+			<li sec:authorize-url="/input"><a href="input.html" th:href="@{/input}">挨拶の登録へ</a></li>
+			<li sec:authorize-url="/input"><a href="userList.html" th:href="@{/userList}">ユーザ管理へ</a></li>
+	</ul>
+	
+	<form sec:authorize="authenticated" method="post" action="index.html" th:action="@{/logout}">
+		<button type="submit">ログアウト</button>
+	</form>
+	
+</body>
+</html>
